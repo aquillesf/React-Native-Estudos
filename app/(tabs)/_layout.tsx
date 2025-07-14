@@ -14,20 +14,22 @@ const colorScheme = useColorScheme() || 'light';
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-        headerShown: false,
+        tabBarInactiveTintColor: Colors[colorScheme].tabIconDefault,
+        headerShown: true,
+        headerTitleAlign: 'center',
       }}
     >
       <Tabs.Screen
-        name="(coffee)"
+        name="Home"
         options={{
-          title: 'Coffee',
+          title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="coffee" color={color} />,
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
-          title: 'Contact Us',
+          title: 'Contact',
           tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
         }}
       />
