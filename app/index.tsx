@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Text, View, StyleSheet, ImageBackground, Pressable } from 'react-native'
-import cafeimg from '../../assets/images/cafe_preto.jpg'
+import cafeimg from '@/assets/images/cafe_preto.jpg'
 import { Link } from 'expo-router'
 
 const app = () => {
@@ -15,6 +15,12 @@ const app = () => {
         <Link href="/contact" style={ {marginHorizontal: 'auto'} } asChild>
           <Pressable style = {styles.button}>
             <Text style = {styles.buttonText}>Contact Us</Text>
+          </Pressable>
+        </Link>
+
+        <Link href="/menu" style={ {marginHorizontal: 'auto'} } asChild>
+          <Pressable style = {styles.buttonMenu}>
+              <Text style = {styles.buttonText}>Menu</Text>
           </Pressable>
         </Link>
       </ImageBackground>
@@ -57,6 +63,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
     padding: 6,
+    marginBottom: 20,
+  },
+
+  buttonMenu:{
+    height:50,
+    width:100,
+    borderRadius:20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    padding: 10,
   },
 
   buttonText:{

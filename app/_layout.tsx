@@ -1,13 +1,15 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+import { Appearance } from 'react-native';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from '@/constants/Colors';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = Appearance.getColorScheme();
+  const theme = colorScheme === 'dark' ? Colors.dark : Colors.light;
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -19,15 +21,11 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack screenOptions={{ headerStyle: { backgroundColor: theme.HeaderBackground }, headerTintColor: theme.text, headerShadowVisible: false }}>
         <Stack.Screen name="+not-found" />
-        <Stack.Screen name ="(tabs)" options={{ headerShown: false, title: "Coffee Shop" }} />
-        {/*<Stack.Screen name ="(coffee)" options={{ headerShown: false, title: "Coffee Shop" }} />*/}
-        {/*<Stack.Screen name="index" options={{ title: "Home" }}/>
-        <Stack.Screen name="contact" options={{ title: "Contact Us" }}/>*/}
+        <Stack.Screen name ="index" options={{ headerShown: false, title: "Home" }} />
+        <Stack.Screen name ="menu" options={{ headerShown: true, title: "Menu", headerTitle: 'Coffee Shop' }} />
+        <Stack.Screen name ="contact" options={{ headerShown: true, title: "Contact Us", headerTitle: 'Contact Us' }} />
       </Stack> 
-      <StatusBar style="auto" />
-    </ThemeProvider>
   );
 }
